@@ -86,6 +86,7 @@ int main(void)
 	unsigned int round = 0;
 
   t = clock ();
+    // a
 	// initSpielfeld(spielfeld);
   clrscr();
 	background = bgcolor(COLOR_BLACK);
