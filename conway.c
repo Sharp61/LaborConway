@@ -16,11 +16,11 @@
 #define BOXSIZE 3
 #define ROUNDS 100
 
-void findNachbarn(char x, char y, char spielfeld[][YMAX], char nachbarn[][BOXSIZE]);
+void findNachbarn();
 // void initSpielfeld(char spielfeld [][YMAX]);
-void printSpielfeld(char spielfeld [][YMAX]);
-char zaehlLebende(char nachbarn[][BOXSIZE]);
-void pruefeRegeln(char x, char y,  char lebende, char temp[][YMAX], char spielfeld[][YMAX]);
+void printSpielfeld();
+void zaehlLebende();
+// void pruefeRegeln(char x, char y,  char lebende, char temp[][YMAX], char spielfeld[][YMAX]);
 
 //static const char array[XMAX][YMAX] 
 /*const static*/ char spielfeld[XMAX][YMAX]= {
@@ -69,29 +69,27 @@ void pruefeRegeln(char x, char y,  char lebende, char temp[][YMAX], char spielfe
 // static char spielfeld[XMAX][YMAX];
 static char temp[XMAX][YMAX];
 static char nachbarn[BOXSIZE][BOXSIZE];
+char lebende;
+char x, y;
 
-int main(void)
+char main(void)
 {
-  clock_t       t;
-  unsigned long sec;
-  unsigned      sec10;
-  unsigned long fps;
-  unsigned      fps10;
-  unsigned char background;
-  unsigned char text;
-        
-	char x;
-	char y;
-	char lebende;
-	unsigned int round = 0;
+	  clock_t       t;
+	  unsigned long sec;
+	  unsigned      sec10;
+	  unsigned long fps;
+	  unsigned      fps10;
+	  unsigned char background;
+	  unsigned char text;
 
-  t = clock ();
-    // a
+	  unsigned int round = 0;
+
+	 t = clock ();
 	// initSpielfeld(spielfeld);
-  clrscr();
+	  clrscr();
 	background = bgcolor(COLOR_BLACK);
 	text = textcolor(COLOR_WHITE);
-	printSpielfeld(spielfeld);
+	printSpielfeld();
 //	signal (int sig, __sigfunc func);
 
 
@@ -100,8 +98,8 @@ int main(void)
 			for(x = 0; x< XMAX; x++){
 				// gotoxy(0,0);
 				// cprintf("%2d %2d",x , y);
-				findNachbarn(x,y,spielfeld,nachbarn);
-				lebende = zaehlLebende(nachbarn);
+				findNachbarn();
+				zaehlLebende();
 				// gotoxy(x,y);
 				// cprintf("%d",lebende /7 );
 					switch(lebende)
@@ -120,7 +118,7 @@ int main(void)
 		memcpy(spielfeld,temp,XMAX*YMAX);
 	
 		round++;
-		printSpielfeld(spielfeld);	
+		printSpielfeld();	
 	}
 		t = clock() - t;
 	
@@ -139,8 +137,8 @@ int main(void)
 
     /* Output stats */
     gotoxy (0, 0); cprintf ("time  : %lu.%us", sec, sec10);
-    gotoxy (0, 1); cprintf ("frames: %lu", round);
-    gotoxy (0, 2); cprintf ("fps   : %lu.%u", fps, fps10);
+    // gotoxy (0, 1); cprintf ("frames: %lu", round);
+    // gotoxy (0, 2); cprintf ("fps   : %lu.%u", fps, fps10);
 
     /* Wait for a key, then end */
     cputsxy (0, 4, "Press any key when done...");
@@ -166,9 +164,9 @@ int main(void)
 }*/
 
 
-char zaehlLebende(char nachbarn[][BOXSIZE])
+void zaehlLebende()
 {
-	char lebende = 0;
+	lebende = 0;
 	
 	lebende += nachbarn[0][0];
 	lebende += nachbarn[0][1];
@@ -178,13 +176,12 @@ char zaehlLebende(char nachbarn[][BOXSIZE])
 	lebende += nachbarn[2][1];
 	lebende += nachbarn[1][2];
 	lebende += nachbarn[2][2];
-
-	return lebende;
 }
 
 
 
-void findNachbarn(char x, char y, char spielfeld[][YMAX], char nachbarn[][BOXSIZE]){
+void findNachbarn()
+{
 	//gehe über alle nachbarn
 	unsigned int osx, ix;
 	unsigned int osy, iy; 
@@ -222,7 +219,8 @@ void findNachbarn(char x, char y, char spielfeld[][YMAX], char nachbarn[][BOXSIZ
 
 
 
-void printSpielfeld(char spielfeld [][YMAX]){
+void printSpielfeld()
+{
 	char x,y;
 	for(y = 0; y< YMAX; y++){
 		for(x = 0; x< XMAX; x++){
