@@ -103,7 +103,16 @@ int main(void)
 				lebende = zaehlLebende(nachbarn);
 				// gotoxy(x,y);
 				// cprintf("%d",lebende /7 );
-				pruefeRegeln(x,y,lebende / 7, temp, spielfeld);
+					switch(lebende)
+					{
+						case 2:	temp[x][y] = spielfeld[x][y];
+						break;
+						case 3: temp[x][y] = 1;
+						break;
+						default: temp[x][y] = 0;
+						break;
+					}
+				
 			}// for x
 		}// for y
 
@@ -142,7 +151,7 @@ int main(void)
 
 
 
-void pruefeRegeln(char x, char y, char lebende, char temp[][YMAX], char spielfeld[][YMAX])
+/* void pruefeRegeln(char x, char y, char lebende, char temp[][YMAX], char spielfeld[][YMAX])
 {
 	switch(lebende)
 	{
@@ -153,7 +162,7 @@ void pruefeRegeln(char x, char y, char lebende, char temp[][YMAX], char spielfel
 		default: temp[x][y] = 0;
 		break;
 	}
-}
+}*/
 
 
 char zaehlLebende(char nachbarn[][BOXSIZE])
