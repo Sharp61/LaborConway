@@ -17,13 +17,13 @@
 #define ROUNDS 100
 
 void findNachbarn(char x, char y, char spielfeld[][YMAX], char nachbarn[][BOXSIZE]);
-void initSpielfeld(char spielfeld [][YMAX]);
+// void initSpielfeld(char spielfeld [][YMAX]);
 void printSpielfeld(char spielfeld [][YMAX]);
 char zaehlLebende(char nachbarn[][BOXSIZE]);
 void pruefeRegeln(char x, char y,  char lebende, char temp[][YMAX], char spielfeld[][YMAX]);
 
 //static const char array[XMAX][YMAX] 
-const static char array[XMAX][YMAX]= {
+/*const static*/ char spielfeld[XMAX][YMAX]= {
 {0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0},
 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0},
 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -66,7 +66,7 @@ const static char array[XMAX][YMAX]= {
 {0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0},
 };
 
-static char spielfeld[XMAX][YMAX];
+// static char spielfeld[XMAX][YMAX];
 static char temp[XMAX][YMAX];
 static char nachbarn[BOXSIZE][BOXSIZE];
 
@@ -86,7 +86,7 @@ int main(void)
 	unsigned int round = 0;
 
   t = clock ();
-	initSpielfeld(spielfeld);
+	// initSpielfeld(spielfeld);
   clrscr();
 	background = bgcolor(COLOR_BLACK);
 	text = textcolor(COLOR_WHITE);
@@ -107,7 +107,7 @@ int main(void)
 			}// for x
 		}// for y
 
-		memcpy(spielfeld,temp,XMAX*YMAX*2);
+		memcpy(spielfeld,temp,XMAX*YMAX);
 	
 		round++;
 		printSpielfeld(spielfeld);	
@@ -250,7 +250,7 @@ void printSpielfeld(char spielfeld [][YMAX]){
 
 
 
-void initSpielfeld(char spielfeld [][YMAX]){
+/*void initSpielfeld(char spielfeld [][YMAX]){
 	char x,y;
 	//fülle das feld mit zufallswerten und gibs aus
 	for(y = 0; y< YMAX; y++){
@@ -258,4 +258,4 @@ void initSpielfeld(char spielfeld [][YMAX]){
 				spielfeld[x][y] = array[x][y];
 		}
 	}
-}
+}*/
