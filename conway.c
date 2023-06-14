@@ -178,21 +178,19 @@ void pruefeRegeln(char x, char y, char lebende, char temp[][YMAX], char spielfel
 }
 
 
-char zaehlLebende(char nachbarn[][BOXSIZE]){
-  char lebende = 0;
-  char iy, ix; // flag;
-	for(iy= 0; iy < BOXSIZE ; iy++)
-	{
-		for(ix = 0; ix < BOXSIZE; ix++)
-		{
-			//prüfe dass wir nicht auf unserer eigneen position sind
-			if(iy != 1 || ix != 1)
-			{
-				lebende += nachbarn[ix][iy];
-			}
+char zaehlLebende(char nachbarn[][BOXSIZE])
+{
+	char lebende = 0;
+	
+	lebende += nachbarn[0][0];
+	lebende += nachbarn[0][1];
+	lebende += nachbarn[0][2];
+	lebende += nachbarn[1][0];
+	lebende += nachbarn[2][0];
+	lebende += nachbarn[2][1];
+	lebende += nachbarn[1][2];
+	lebende += nachbarn[2][2];
 
-		}//for ix
-	}//for iy	
 	return lebende;
 }
 
